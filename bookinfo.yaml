@@ -72,10 +72,12 @@ spec:
       serviceAccountName: bookinfo-details
       containers:
       - name: details
-        image: docker.io/tunnyeinmua/bookinfo-details-v1:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-details-v1:1.20.3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+      imagePullSecrets:
+      - name: my-secret
 ---
 ##################################################################################################
 # Ratings service
@@ -123,10 +125,12 @@ spec:
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: docker.io/tunnyeinmua/bookinfo-ratings-v1:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-ratings-v1:1.20.3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+      imagePullSecrets:
+      - name: my-secret
 ---
 ##################################################################################################
 # Reviews service
@@ -174,7 +178,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/tunnyeinmua/bookinfo-reviews-v1:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-reviews-v1:1.20.3
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -191,6 +195,8 @@ spec:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+      imagePullSecrets:
+      - name: my-secret
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -214,7 +220,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/tunnyeinmua/bookinfo-reviews-v2:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-reviews-v2:1.20.3
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -231,6 +237,8 @@ spec:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+      imagePullSecrets:
+      - name: my-secret
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -254,7 +262,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/tunnyeinmua/bookinfo-reviews-v3:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-reviews-v3:1.20.3
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -271,6 +279,8 @@ spec:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
+      imagePullSecrets:
+      - name: my-secret
 ---
 ##################################################################################################
 # Productpage services
@@ -322,13 +332,15 @@ spec:
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
-        image: docker.io/tunnyeinmua/bookinfo-product-page:1.20.3
+        image: 767397836388.dkr.ecr.ap-southeast-1.amazonaws.com/docker-hub-a887/tunnyeinmua/bookinfo-product-page:1.20.3
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
         volumeMounts:
         - name: tmp
           mountPath: /tmp
+      imagePullSecrets:
+      - name: my-secret
       volumes:
       - name: tmp
         emptyDir: {}
